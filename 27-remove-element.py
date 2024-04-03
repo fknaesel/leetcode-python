@@ -48,7 +48,7 @@ Constraints:
 from typing import List
 
 class Solution:
-    def removeElement(nums: List[int], val: int) -> int:
+    def removeElementOld(nums: List[int], val: int) -> int:
         copy = nums[:]
         last = len(nums) - 1
         k = 0
@@ -62,8 +62,26 @@ class Solution:
 
         print(nums)
         return k
+    
+    def removeElement(nums: List[int], val: int) -> int:
+        print(f"before {nums}")
+        k = 0 # left
+        i = 0 # right
+        for i in range(0,len(nums)):
+            if nums[i] != val: # we want to keep
+                nums[k] = nums[i]
+                k += 1               
+                
+            i += 1
+        
+        print(f"  after {nums[:k]}")
+        print(f"      k = {k}")
+        return k
 
 s = Solution
-print(f"k = {s.removeElement(nums=[3,2,2,3], val=3)}")
-print(f"k = {s.removeElement(nums=[0,1,2,2,3,0,4,2], val=2)}")
+s.removeElement(nums=[3,2,2,3], val=3)
+s.removeElement(nums=[0,1,2,2,3,0,4,2], val=2)
+s.removeElement(nums=[], val=0)
+s.removeElement(nums=[2], val=3)
+s.removeElement(nums=[1], val=1)
 
